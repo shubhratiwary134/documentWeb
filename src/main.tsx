@@ -17,8 +17,8 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: "#1b1a1a", // Default background color for the entire app
-      paper: "#ffffff"    // Background color for Paper components
+      default: "#1b1a1a", 
+      paper: "#ffffff"  
     }, 
   },
 });
