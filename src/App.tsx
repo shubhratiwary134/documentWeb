@@ -1,7 +1,7 @@
 
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import Navbar from "./Components/Navbar";
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Container, TextField, Typography } from '@mui/material';
 
 const App = () => {
  
@@ -12,8 +12,7 @@ const App = () => {
       </SignedOut>
       
       <SignedIn >
-        <div className="m-5 flex justify-between items-center">
-        <UserButton />
+        <div >
         <Navbar></Navbar>
         </div>
      
