@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Button, Typography, Container,  CircularProgress } from '@mui/material';
+import { Button, Typography, Container,  CircularProgress, Checkbox, FormControlLabel } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import { db, storage } from '../firebase/Firebase'; 
 import { ref, getDownloadURL,uploadBytesResumable } from 'firebase/storage';
@@ -18,7 +18,7 @@ const UploadDocuments: React.FC = () => {
   const onDrop = (acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   };
-
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {  'application/pdf': [], // PDF files
@@ -79,6 +79,13 @@ const UploadDocuments: React.FC = () => {
           Drag & drop your file here, or click to select one
         </Typography>
         {file && <Typography variant="body2" component="p">Selected file: {file.name}</Typography>}
+      </div>
+      <div className='mt-2'>
+      <Typography variant="h6" component="h6" gutterBottom>
+        Visibility
+      </Typography>
+      <FormControlLabel control={<Checkbox defaultChecked />} label="public" />
+      <FormControlLabel control={<Checkbox  />} label="private" />
       </div>
       {uploading && (
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
