@@ -12,21 +12,19 @@ const App = () => {
       </SignedOut>
       
       <SignedIn >
-        <div className="flex justify-between mt-5 mx-10">
+        <div className="m-5 flex justify-between items-center">
+        <UserButton />
         <Navbar></Navbar>
+        </div>
+     
+        <div className="flex justify-between mt-5 mx-10">
+        
         <Container maxWidth="md" sx={{ mt: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
         DocWeb
       </Typography>
 
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
-        <Button variant="contained" color="primary" >
-          My Documents
-        </Button>
-        <Button variant="contained" color="secondary" >
-          Upload  Documents
-        </Button>
-      </Box>
+     
 
       <TextField
         fullWidth
@@ -35,7 +33,7 @@ const App = () => {
         
       />
     </Container>
-        <UserButton />
+       
         </div>
     
       </SignedIn>
