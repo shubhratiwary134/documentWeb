@@ -3,14 +3,17 @@
 import React, { useState } from 'react';
 import { Button, Typography, Container,  CircularProgress } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
-import { storage } from '../firebase/Firebase'; 
+import { db, storage } from '../firebase/Firebase'; 
 import { ref, getDownloadURL,uploadBytesResumable } from 'firebase/storage';
-
+import { useUserStore } from '../Storage/useStore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import SetUser from '../Storage/useStore';
 const UploadDocuments: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [downloadURL, setDownloadURL] = useState<string | null>(null);
+  const author = useUserStore((state)=>state.author)
 
   const onDrop = (acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
@@ -43,12 +46,25 @@ const UploadDocuments: React.FC = () => {
         const url = await getDownloadURL(storageRef);
         setDownloadURL(url);
         setUploading(false);
+
+        try {
+            await addDoc(collection(db, 'documents'), {
+              name: file.name,
+              url: url,
+              author: author,
+              createdAt: serverTimestamp(),
+            });
+            console.log('Document metadata saved successfully');
+          } catch (e) {
+            console.error('Error adding document metadata: ', e);
+          }
       }
     );
   };
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
+        <SetUser/>
       <Typography variant="h4" component="h1" gutterBottom>
         Upload  Document
       </Typography>

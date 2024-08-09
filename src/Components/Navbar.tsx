@@ -1,4 +1,4 @@
-import { Box,Button,Typography } from "@mui/material"
+import { Box,Typography } from "@mui/material"
 import { UserButton } from '@clerk/clerk-react';
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
