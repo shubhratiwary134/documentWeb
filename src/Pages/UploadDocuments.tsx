@@ -21,7 +21,11 @@ const UploadDocuments: React.FC = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: { 'application/pdf': [] } 
+    accept: {  'application/pdf': [], // PDF files
+        'image/jpeg': [],      // JPEG images
+        'image/png': [],       // PNG images
+        'image/gif': [],       // GIF images
+         } 
   });
 
   const handleUpload = async () => {
@@ -52,6 +56,7 @@ const UploadDocuments: React.FC = () => {
               name: file.name,
               url: url,
               author: author,
+              type: file.type,
               createdAt: serverTimestamp(),
             });
             console.log('Document metadata saved successfully');

@@ -1,6 +1,7 @@
 
 import { Container,TextField } from "@mui/material"
 import Navbar from "../Components/Navbar"
+import DocumentList from "../Components/DocumentList"
 const HomePage = () => {
   return (
     <div>
@@ -22,6 +23,7 @@ const HomePage = () => {
     </Container>
        
         </div> 
+        <DocumentList></DocumentList>
     </div>
   )
 }
