@@ -13,12 +13,13 @@ const UploadDocuments: React.FC = () => {
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [downloadURL, setDownloadURL] = useState<string | null>(null);
+  const [selected, setSelected] = useState<'public'| null>(null);
   const author = useUserStore((state)=>state.author)
 
   const onDrop = (acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   };
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {  'application/pdf': [], // PDF files
@@ -27,6 +28,9 @@ const UploadDocuments: React.FC = () => {
         'image/gif': [],       // GIF images
          } 
   });
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+  };
 
   const handleUpload = async () => {
     if (!file) return;
@@ -84,8 +88,26 @@ const UploadDocuments: React.FC = () => {
       <Typography variant="h6" component="h6" gutterBottom>
         Visibility
       </Typography>
-      <FormControlLabel control={<Checkbox defaultChecked />} label="public" />
-      <FormControlLabel control={<Checkbox  />} label="private" />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={selected === 'public'}
+            onChange={handleChange}
+            value="public"
+          />
+        }
+        label="Public"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={selected === 'private'}
+            onChange={handleChange}
+            value="private"
+          />
+        }
+        label="Private"
+      />
       </div>
       {uploading && (
         <div style={{ marginTop: '20px', textAlign: 'center' }}>
