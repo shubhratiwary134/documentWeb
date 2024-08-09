@@ -1,9 +1,13 @@
 import { Box,Button } from "@mui/material"
 import { UserButton } from '@clerk/clerk-react';
-
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigate=useNavigate()
   function handleMyDocumentsClick(){
-    
+    navigate('/my-documents')
+  }
+  function handleUploadDocumentClick(){
+    navigate('/upload-document')
   }
   return (
     <div className="m-5 flex justify-between">
@@ -15,7 +19,7 @@ const Navbar = () => {
         <Button variant="contained" color="primary" onClick={handleMyDocumentsClick} >
           My Documents
         </Button>
-        <Button variant="contained" color="secondary" >
+        <Button variant="contained" color="secondary" onClick={handleUploadDocumentClick} >
           Upload  Documents
         </Button>
       </Box>
