@@ -7,9 +7,9 @@ const HomePage = () => {
       <div>
       <Navbar></Navbar>
       </div>
-         <div className="flex justify-between mt-5 mx-10">
+         <div className="flex">
         
-        <Container maxWidth="md" sx={{ mt: 4 }}>
+        <Container maxWidth="lg" >
   
      
 

@@ -50,7 +50,7 @@ const UploadDocuments: React.FC = () => {
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Upload a Document
+        Upload  Document
       </Typography>
       <div {...getRootProps()} style={{ border: '2px dashed #ccc', padding: '20px', borderRadius: '4px', textAlign: 'center' }}>
         <input {...getInputProps()} />
