@@ -1,5 +1,6 @@
 
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import Navbar from "./Components/Navbar";
 
 const App = () => {
   return (
@@ -7,8 +8,13 @@ const App = () => {
       <SignedOut>
         <SignInButton />
       </SignedOut>
-      <SignedIn>
+      
+      <SignedIn >
+        <div className="flex justify-between mt-5 mx-10">
+        <Navbar></Navbar>
         <UserButton />
+        </div>
+    
       </SignedIn>
     </header>
   );
