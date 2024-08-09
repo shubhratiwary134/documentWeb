@@ -1,4 +1,4 @@
-import { Box,Button } from "@mui/material"
+import { Box,Button,Typography } from "@mui/material"
 import { UserButton } from '@clerk/clerk-react';
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
@@ -11,19 +11,28 @@ const Navbar = () => {
   }
   return (
     <div className="m-5 flex justify-between">
-      <div>
+    <div className="flex items-start gap-4">
+    <div >
         <UserButton/>
       </div>
+      <Typography variant="h6" component="h1" gutterBottom>
+        DocWeb
+      </Typography>
          <div >
-       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4,gap:10 }}>
-        <Button variant="contained" color="primary" onClick={handleMyDocumentsClick} >
-          My Documents
-        </Button>
-        <Button variant="contained" color="secondary" onClick={handleUploadDocumentClick} >
-          Upload  Documents
-        </Button>
-      </Box>
     </div>
+</div>
+       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4,gap:10 }}>
+       
+
+        <button className="bg-[#1b1a1a] text-white px-5 py-2" onClick={handleMyDocumentsClick} >
+          My Documents
+        </button>
+        <button className="bg-[#1b1a1a] text-white px-5 py-2" onClick={handleUploadDocumentClick} >
+          Upload  Documents
+        </button>
+        
+      </Box>
+   
     </div>
  
   )

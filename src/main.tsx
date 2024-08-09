@@ -15,7 +15,11 @@ if (!PUBLISHABLE_KEY) {
 
 const theme = createTheme({
   palette: {
-    mode: 'dark', 
+    mode: 'dark',
+    background: {
+      default: "#1b1a1a", // Default background color for the entire app
+      paper: "#ffffff"    // Background color for Paper components
+    }, 
   },
 });
 createRoot(document.getElementById('root')!).render(
