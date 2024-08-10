@@ -114,7 +114,7 @@ const DocumentList: React.FC = () => {
       <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
       <List sx={{ mt: 2 }}>
         {filteredDocuments.map((doc) => (
-          <ListItem key={doc.id} sx={{ mb: 2, backgroundColor: '#2b2727', borderRadius: '8px', padding: '16px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
+          <ListItem key={doc.id} sx={{ mb: 2, backgroundColor: '#2b2a2a', borderRadius: '8px', padding: '16px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
             <div>
               <ListItemText
                 primary={doc.name}

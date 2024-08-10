@@ -1,7 +1,4 @@
 
-
-
-
 import React, { useState } from 'react';
 import { Button, Typography, Container, CircularProgress, Checkbox, FormControlLabel, TextField, IconButton } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
@@ -84,9 +81,9 @@ const UploadDocuments: React.FC = () => {
       sx={{ 
         mt: 4, 
         backgroundColor: '#1b1a1a', 
-        padding: '40px', 
+        padding: '40px',    
         borderRadius: '8px', 
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.9)',
         color: '#fff'
       }}
     >
