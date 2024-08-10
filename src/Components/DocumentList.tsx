@@ -21,12 +21,12 @@ const DocumentList: React.FC = () => {
     setLoading(true);
     try {
       let documentQuery;
-  
+      
       if (direction === 'next' && lastVisible) {
         documentQuery = query(
           collection(db, 'documents'),
           where('Visibility', '==', 'public'),
-          orderBy('createdAt','desc'),
+          orderBy('createdAt', 'desc'),
           startAfter(lastVisible),
           limit(PAGE_SIZE)
         );
@@ -34,16 +34,16 @@ const DocumentList: React.FC = () => {
         documentQuery = query(
           collection(db, 'documents'),
           where('Visibility', '==', 'public'),
-          orderBy('createdAt','desc'),
+          orderBy('createdAt', 'desc'),
           endBefore(firstVisible),
           limitToLast(PAGE_SIZE)
         );
       } else {
-        // Fall back to initial query if direction is 'initial' or if the boundaries are null
+        // Initial query
         documentQuery = query(
           collection(db, 'documents'),
           where('Visibility', '==', 'public'),
-          orderBy('createdAt','desc'),
+          orderBy('createdAt', 'desc'),
           limit(PAGE_SIZE)
         );
       }
@@ -52,16 +52,24 @@ const DocumentList: React.FC = () => {
       const docsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   
       setDocuments(docsData);
-      setFirstVisible(querySnapshot.docs[0]);
-      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-      setIsFirstPage(direction === 'initial' || !querySnapshot.docs[0]);  // Handle case where no documents are returned
+      setFirstVisible(querySnapshot.docs[0] || null); // Set to the first document of the current page
+      setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1] || null); // Set to the last document of the current page
+  
+      setIsFirstPage(direction === 'initial' || (direction === 'previous' && querySnapshot.docs.length < PAGE_SIZE));
       setIsLastPage(docsData.length < PAGE_SIZE);
+      
+      if (direction === 'next' || direction === 'previous') {
+        setIsFirstPage(querySnapshot.docs.length > 0 && docsData.length < PAGE_SIZE && direction === 'previous');
+      }
+  
       setLoading(false);
     } catch (error) {
       console.error('Error fetching documents: ', error);
       setLoading(false);
     }
   };
+  
+  
   
   useEffect(() => {
     fetchDocuments('initial'); // Initial fetch

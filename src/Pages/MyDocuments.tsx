@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
 import { Typography, List, ListItem, ListItemText, CircularProgress, Container } from '@mui/material';
 import { useUserStore } from '../Storage/useStore';
@@ -18,7 +18,7 @@ const MyDocuments: React.FC = () => {
       if (author) {
         setLoading(true);
         try {
-          const q = query(collection(db, 'documents'), where('author', '==', author));
+          const q = query(collection(db, 'documents'), where('author', '==', author),orderBy('createdAt','desc'));
           const querySnapshot = await getDocs(q);
           const docsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
           setDocuments(docsData);
