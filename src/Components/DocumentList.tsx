@@ -96,6 +96,7 @@ const DocumentList: React.FC = () => {
   if (filteredDocuments.length === 0 && !loading) {
     return (
       <Container maxWidth="md" sx={{ mt: 4 }}>
+            <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
         <Typography variant="h6">No documents found</Typography>
       </Container>
     );
