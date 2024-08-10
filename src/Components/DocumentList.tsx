@@ -1,5 +1,6 @@
 
 
+
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs, limit, startAfter, endBefore, orderBy ,limitToLast} from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
@@ -69,8 +70,6 @@ const DocumentList: React.FC = () => {
     }
   };
   
-  
-  
   useEffect(() => {
     fetchDocuments('initial'); // Initial fetch
   }, []);
@@ -104,34 +103,35 @@ const DocumentList: React.FC = () => {
   if (filteredDocuments.length === 0 && !loading) {
     return (
       <Container maxWidth="md" sx={{ mt: 4 }}>
-            <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-        <Typography variant="h6">No documents found</Typography>
+        <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+        <Typography variant="h6" sx={{ color: 'text.secondary', mt: 2 }}>No documents found</Typography>
       </Container>
     );
   }
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4, backgroundColor: '#2b2a2a', padding: '40px', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
       <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-      <List>
+      <List sx={{ mt: 2 }}>
         {filteredDocuments.map((doc) => (
-          <ListItem key={doc.id} sx={{ mb: 2 }}>
+          <ListItem key={doc.id} sx={{ mb: 2, backgroundColor: '#2b2727', borderRadius: '8px', padding: '16px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
             <div>
               <ListItemText
                 primary={doc.name}
                 secondary={`Uploaded by: ${doc.author} on ${new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}`}
+                sx={{ color: 'text.primary' }}
               />
               {doc.type.startsWith('image/') && (
-                <img src={doc.url} alt={doc.name} style={{ maxWidth: '500px', maxHeight: '500px', marginTop: '10px' }} />
+                <img src={doc.url} alt={doc.name} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px', borderRadius: '4px' }} />
               )}
               {doc.type === 'application/pdf' && (
                 <iframe
                   src={doc.url}
                   title={doc.name}
-                  style={{ width: '500px', height: '500px', marginTop: '10px' }}
+                  style={{ width: '100%', height: '300px', marginTop: '10px', borderRadius: '4px' }}
                 ></iframe>
               )}
-              <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px' }}>
+              <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px', color: '#3f51b5', textDecoration: 'none' }}>
                 View Document
               </a>
             </div>
@@ -144,6 +144,7 @@ const DocumentList: React.FC = () => {
           color="primary"
           onClick={handlePreviousPage}
           disabled={isFirstPage || loading}
+          sx={{ minWidth: '100px' }}
         >
           Previous
         </Button>
@@ -152,6 +153,7 @@ const DocumentList: React.FC = () => {
           color="primary"
           onClick={handleNextPage}
           disabled={isLastPage || loading}
+          sx={{ minWidth: '100px' }}
         >
           Next
         </Button>
@@ -161,5 +163,3 @@ const DocumentList: React.FC = () => {
 };
 
 export default DocumentList;
-
-

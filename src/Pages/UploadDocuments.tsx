@@ -3,13 +3,13 @@
 
 
 import React, { useState } from 'react';
-import { Button, Typography, Container, CircularProgress, Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Button, Typography, Container, CircularProgress, Checkbox, FormControlLabel, TextField, IconButton } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import { db, storage } from '../firebase/Firebase'; 
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { useUserStore } from '../Storage/useStore';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-
+import CloseIcon from '@mui/icons-material/Close';
 const UploadDocuments: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -35,6 +35,7 @@ const UploadDocuments: React.FC = () => {
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
+
 
   const handleUpload = async () => {
     if (!file) return;
@@ -74,7 +75,9 @@ const UploadDocuments: React.FC = () => {
       }
     );
   };
-
+ function handleDelete(){
+  setFile(null)
+ }
   return (
     <Container 
       maxWidth="md" 
@@ -98,13 +101,23 @@ const UploadDocuments: React.FC = () => {
           Drag & drop your file here, or click to select one
         </Typography>
         {file && (
-          <Typography 
+          <div>
+            <Typography 
             variant="body2" 
             component="p" 
             sx={{ mt: 2, color: '#fff' }}
           >
             Selected file: {file.name}
           </Typography>
+           <IconButton 
+           aria-label="delete" 
+           onClick={handleDelete} 
+           sx={{ color: '#fff', marginLeft: '10px' }}
+         >
+           <CloseIcon />
+         </IconButton>
+          </div>
+          
         )}
       </div>
       <div className="mt-8">
