@@ -121,6 +121,10 @@ const DocumentList: React.FC = () => {
                 secondary={`Uploaded by: ${doc.author} on ${new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}`}
                 sx={{ color: 'text.primary' }}
               />
+              <ListItemText
+              primary={doc.description}
+              sx={{ color: 'text.primary' }}
+              />
               {doc.type.startsWith('image/') && (
                 <img src={doc.url} alt={doc.name} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px', borderRadius: '4px' }} />
               )}

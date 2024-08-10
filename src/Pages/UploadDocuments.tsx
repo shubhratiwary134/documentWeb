@@ -12,6 +12,7 @@ const UploadDocuments: React.FC = () => {
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [downloadURL, setDownloadURL] = useState<string | null>(null);
+  const [description,setDescription]=useState<string | null>(null);
   const [selected, setSelected] = useState<'public'| 'private'>('public');
   const author = useUserStore((state) => state.author);
 
@@ -64,8 +65,11 @@ const UploadDocuments: React.FC = () => {
             type: file.type,
             createdAt: serverTimestamp(),
             Visibility: selected,
+            description: description
           });
           console.log('Document metadata saved successfully');
+          setDescription('');
+          setFile(null); 
         } catch (e) {
           console.error('Error adding document metadata: ', e);
         }
@@ -119,9 +123,11 @@ const UploadDocuments: React.FC = () => {
       </div>
       <div className="mt-8">
         <TextField
-          label="Add a Description"
+          label="Add a Description(optional)"
           variant="outlined"
           fullWidth
+          value={description}
+          onChange={(e)=>setDescription(e.target.value)}
           sx={{ 
             margin: '40px 0', 
             backgroundColor: '#2c2c2c', 
