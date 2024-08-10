@@ -13,7 +13,7 @@ const UploadDocuments: React.FC = () => {
   const [uploading, setUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [downloadURL, setDownloadURL] = useState<string | null>(null);
-  const [selected, setSelected] = useState<'public'| null>(null);
+  const [selected, setSelected] = useState<'public'| 'private'>('public');
   const author = useUserStore((state)=>state.author)
 
   const onDrop = (acceptedFiles: File[]) => {
@@ -62,6 +62,7 @@ const UploadDocuments: React.FC = () => {
               author: author,
               type: file.type,
               createdAt: serverTimestamp(),
+              Visibility:selected
             });
             console.log('Document metadata saved successfully');
           } catch (e) {
