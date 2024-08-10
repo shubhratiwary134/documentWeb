@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, doc, getDocs } from 'firebase/firestore';
+import { collection, query,where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
 import { Typography, List, ListItem, ListItemText, CircularProgress, Container } from '@mui/material';
 
@@ -11,7 +11,8 @@ const DocumentList: React.FC = () => {
     useEffect(() => {
       const fetchDocuments = async () => {
         try {
-          const querySnapshot = await getDocs(collection(db, 'documents'));
+          const q = query(collection(db, 'documents'), where('Visibility', '==', 'public'));
+          const querySnapshot = await getDocs(q);
           const docsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setDocuments(docsData);
           setLoading(false);
