@@ -6,6 +6,7 @@ import { db } from '../firebase/Firebase';
 import { Typography, List, ListItem, ListItemText, CircularProgress, Container } from '@mui/material';
 import { useUserStore } from '../Storage/useStore';
 import DeleteButton from '../Components/DeleteButton';
+import ChangeVisibilityButton from '../Components/ChangeVisibility';
 
 const MyDocuments: React.FC = () => {
   const [documents, setDocuments] = useState<any[]>([]);
@@ -34,6 +35,12 @@ const MyDocuments: React.FC = () => {
 
   function handleDelete(id:string){
     setDocuments(documents.filter(doc=>doc.id!==id))
+  }
+ 
+  const handleChangeVisibility = (id: string, newVisibility: string) => {
+    setDocuments(
+      documents.map(doc => (doc.id === id ? { ...doc, visibility: newVisibility } : doc))
+    );
   }
   if (loading) {
     return (
@@ -76,7 +83,22 @@ const MyDocuments: React.FC = () => {
               <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px' }}>
                 View Document
               </a>
-              <DeleteButton documentId={doc.id} fileUrl={doc.url} onDelete={()=>handleDelete(doc.id)}/>
+              <DeleteButton
+               documentId={doc.id}
+                fileUrl={doc.url}
+                 onDelete={()=>handleDelete(doc.id)}
+                 />
+                 <div className='flex gap-10 items-center'>
+                 <div>
+                  {doc.Visibility}
+                 </div>
+              <ChangeVisibilityButton
+                  documentId={doc.id}
+                  currentVisibility={doc.visibility}
+                  onChangeVisibility={(newVisibility) => handleChangeVisibility(doc.id, newVisibility)}
+                />
+                 </div>
+              
             </div>
           </ListItem>
         ))}
