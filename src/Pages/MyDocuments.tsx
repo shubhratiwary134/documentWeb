@@ -82,6 +82,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
 import { Typography, List, ListItem, ListItemText, CircularProgress, Container } from '@mui/material';
 import { useUserStore } from '../Storage/useStore';
+import DeleteButton from '../Components/DeleteButton';
 
 const MyDocuments: React.FC = () => {
   const [documents, setDocuments] = useState<any[]>([]);
@@ -106,8 +107,11 @@ const MyDocuments: React.FC = () => {
     };
 
     fetchDocuments();
-  }, [author]); // Add `author` as a dependency
+  }, [author]); //  `author` as a dependency
 
+  function handleDelete(id:string){
+    setDocuments(documents.filter(doc=>doc.id!==id))
+  }
   if (loading) {
     return (
       <Container maxWidth="md" sx={{ mt: 4, textAlign: 'center' }}>
@@ -148,6 +152,7 @@ const MyDocuments: React.FC = () => {
               <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px' }}>
                 View Document
               </a>
+              <DeleteButton documentId={doc.id} fileUrl={doc.url} onDelete={()=>handleDelete(doc.id)}/>
             </div>
           </ListItem>
         ))}
