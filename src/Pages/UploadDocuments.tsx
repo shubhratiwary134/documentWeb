@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Button, Typography, Container,  CircularProgress, Checkbox, FormControlLabel } from '@mui/material';
+import { Button, Typography, Container,  CircularProgress, Checkbox, FormControlLabel, TextField } from '@mui/material';
 import { useDropzone } from 'react-dropzone';
 import { db, storage } from '../firebase/Firebase'; 
 import { ref, getDownloadURL,uploadBytesResumable } from 'firebase/storage';
@@ -78,14 +78,18 @@ const UploadDocuments: React.FC = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Upload  Document
       </Typography>
-      <div {...getRootProps()} style={{ border: '2px dashed #ccc', padding: '20px', borderRadius: '4px', textAlign: 'center' }}>
+      <div {...getRootProps()}  className="border-2 border-dashed border-gray-300 p-5 rounded-lg text-center min-h-[150px] h-[30vh] max-h-[400px] flex justify-center items-center">
         <input {...getInputProps()} />
-        <Typography variant="body1" component="p">
+        <Typography variant="h5" component="p">
           Drag & drop your file here, or click to select one
         </Typography>
         {file && <Typography variant="body2" component="p">Selected file: {file.name}</Typography>}
       </div>
       <div className='mt-2'>
+        <TextField
+        label='Add a Description'
+        variant="outlined"
+      fullWidth style={{margin:'40px 0'}}></TextField>
       <Typography variant="h6" component="h6" gutterBottom>
         Visibility
       </Typography>
