@@ -7,7 +7,7 @@ import { db, storage } from '../firebase/Firebase';
 import { ref, getDownloadURL,uploadBytesResumable } from 'firebase/storage';
 import { useUserStore } from '../Storage/useStore';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import SetUser from '../Storage/useStore';
+
 const UploadDocuments: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
@@ -74,7 +74,7 @@ const UploadDocuments: React.FC = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-        <SetUser/>
+       
       <Typography variant="h4" component="h1" gutterBottom>
         Upload  Document
       </Typography>
