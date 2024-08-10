@@ -115,7 +115,8 @@ const DocumentList: React.FC = () => {
       <List sx={{ mt: 2 }}>
         {filteredDocuments.map((doc) => (
           <ListItem key={doc.id} sx={{ mb: 2, backgroundColor: '#2b2a2a', borderRadius: '8px', padding: '16px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
-            <div>
+            <div className='w-full flex justify-between'>
+              <div >
               <ListItemText
                 primary={doc.name}
                 secondary={`Uploaded by: ${doc.author} on ${new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}`}
@@ -125,6 +126,9 @@ const DocumentList: React.FC = () => {
               primary={doc.description}
               sx={{ color: 'text.primary' }}
               />
+              </div>
+            
+              <div>
               {doc.type.startsWith('image/') && (
                 <img src={doc.url} alt={doc.name} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px', borderRadius: '4px' }} />
               )}
@@ -132,12 +136,14 @@ const DocumentList: React.FC = () => {
                 <iframe
                   src={doc.url}
                   title={doc.name}
-                  style={{ width: '100%', height: '300px', marginTop: '10px', borderRadius: '4px' }}
+                  style={{ width: '400px', height: '300px', marginTop: '10px', borderRadius: '4px' }}
                 ></iframe>
               )}
               <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px', color: '#3f51b5', textDecoration: 'none' }}>
                 View Document
               </a>
+              </div>
+       
             </div>
           </ListItem>
         ))}

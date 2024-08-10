@@ -60,30 +60,23 @@ const MyDocuments: React.FC = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
      
       <List>
         {documents.map((doc) => (
           <ListItem key={doc.id} sx={{ mb: 2 }}>
-            <div>
+            <div className='w-full'>
+              <div className='w-full flex justify-between'>
+              <div>
               <ListItemText
                 primary={doc.name}
                 secondary={`Uploaded by: ${doc.author} on ${new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}`}
               />
-              {doc.type.startsWith('image/') && (
-                <img src={doc.url} alt={doc.name} style={{ maxWidth: '500px', maxHeight: '500px', marginTop: '10px' }} />
-              )}
-              {doc.type === 'application/pdf' && (
-                <iframe
-                  src={doc.url}
-                  title={doc.name}
-                  style={{ width: '500px', height: '500px', marginTop: '10px' }}
-                ></iframe>
-              )}
-              <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px' }}>
-                View Document
-              </a>
-              <DeleteButton
+              <ListItemText
+              primary={doc.description}
+
+              />
+                <DeleteButton
                documentId={doc.id}
                 fileUrl={doc.url}
                  onDelete={()=>handleDelete(doc.id)}
@@ -98,6 +91,27 @@ const MyDocuments: React.FC = () => {
                   onChangeVisibility={(newVisibility) => handleChangeVisibility(doc.id, newVisibility)}
                 />
                  </div>
+              </div>
+              <div>
+              {doc.type.startsWith('image/') && (
+                <img src={doc.url} alt={doc.name} style={{ maxWidth: '500px', maxHeight: '500px', marginTop: '10px' }} />
+              )}
+              {doc.type === 'application/pdf' && (
+                <iframe
+                  src={doc.url}
+                  title={doc.name}
+                  style={{ width: '500px', height: '500px', marginTop: '10px' }}
+                ></iframe>
+              )}
+              <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px' }}>
+                View Document
+              </a>
+              </div>
+            
+              </div>
+             
+           
+            
               
             </div>
           </ListItem>
