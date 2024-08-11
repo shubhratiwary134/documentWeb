@@ -1,12 +1,11 @@
 
-
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs, limit, startAfter, endBefore, orderBy, limitToLast } from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
-import { Typography, List, ListItem, ListItemText, CircularProgress, Container, Button, Box } from '@mui/material';
+import { Typography, CircularProgress, Container, Button, Box, Grid, Paper } from '@mui/material';
 import SearchBar from './SearchBar';
 
-const PAGE_SIZE = 5; // Number of documents to fetch per page
+const PAGE_SIZE = 4; 
 
 const DocumentList: React.FC = () => {
   const [documents, setDocuments] = useState<any[]>([]);
@@ -111,50 +110,34 @@ const DocumentList: React.FC = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, backgroundColor: '#2b2a2a', padding: { xs: '20px', sm: '30px', md: '40px' }, borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
       <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-      <List sx={{ mt: 2 }}>
+      <Grid container spacing={2} sx={{ mt: 2 }}>
         {filteredDocuments.map((doc) => (
-          <ListItem key={doc.id} sx={{ mb: 2, backgroundColor: '#2b2a2a', borderRadius: '8px', padding: { xs: '12px', sm: '16px' }, boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
-            <div className='w-full flex flex-col sm:flex-row justify-between'>
-              <div>
-              <ListItemText
-  primary={doc.name}
-  secondary={`Uploaded by: ${doc.author} on ${new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}`}
-  sx={{
-    color: 'text.primary',
-    '& .MuiListItemText-primary': {
-      fontSize: '1.5rem', 
-    },
-    '& .MuiListItemText-secondary': {
-      fontSize: '1rem', 
-    },
-  }}
-/>
-
-                <ListItemText
-                  secondary={doc.description}
-                  sx={{  marginTop: 2 }}
-                />
-              </div>
-            
-              <div>
+          <Grid item xs={12} sm={6}  key={doc.id}>
+            <Paper elevation={3} sx={{ padding: 2, backgroundColor: '#2b2a2a', borderRadius: '8px', color: 'text.primary' }}>
+              <Typography variant="h6">{doc.name}</Typography>
+              <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                Uploaded by: {doc.author} on {new Date(doc.createdAt.seconds * 1000).toLocaleDateString()}
+              </Typography>
+              <Typography variant="body2" sx={{ marginTop: 1 }}>{doc.description}</Typography>
+              <Box sx={{ marginTop: 2 }}>
                 {doc.type.startsWith('image/') && (
-                  <img src={doc.url} alt={doc.name} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px', borderRadius: '4px', objectFit: 'contain' }} />
+                  <img src={doc.url} alt={doc.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '4px' }} />
                 )}
                 {doc.type === 'application/pdf' && (
                   <iframe
                     src={doc.url}
                     title={doc.name}
-                    style={{ width: '100%', height: '300px', marginTop: '10px', borderRadius: '4px' }}
+                    style={{ width: '100%', height: '300px', borderRadius: '4px' }}
                   ></iframe>
                 )}
                 <a href={doc.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '10px', color: '#07f412', textDecoration: 'none' }}>
                   View Document
                 </a>
-              </div>
-            </div>
-          </ListItem>
+              </Box>
+            </Paper>
+          </Grid>
         ))}
-      </List>
+      </Grid>
       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', mt: 2 }}>
         <Button
           variant="contained"
@@ -180,4 +163,5 @@ const DocumentList: React.FC = () => {
 };
 
 export default DocumentList;
+
 
