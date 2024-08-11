@@ -3,6 +3,9 @@ Overview
 
 This project is a document management system that allows users to upload, describe, and manage documents with flexible visibility options. Users can choose to make documents public or private. The system includes features such as search functionality, pagination, and lazy loading to handle data efficiently. It is built with TypeScript and utilizes Firebase for document storage and metadata management. The user interface is styled with Material UI and supports drag-and-drop file uploads using React Drop-Zone.
 
+![Screenshot](./src/assets/SS1)
+
+
 Features
 
   Authentication: User authentication is managed using Clerk.
