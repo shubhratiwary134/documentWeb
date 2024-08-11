@@ -1,6 +1,7 @@
 import { Box,Typography } from "@mui/material"
 import { UserButton } from '@clerk/clerk-react';
 import { useNavigate } from "react-router-dom";
+import { IoCloudUploadOutline, IoDocumentOutline } from "react-icons/io5";
 const Navbar = () => {
   const navigate=useNavigate()
   function handleMyDocumentsClick(){
@@ -24,10 +25,12 @@ const Navbar = () => {
        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4,gap:10 }}>
        
 
-        <button className="bg-[#1b1a1a] text-white px-5 py-2" onClick={handleMyDocumentsClick} >
+        <button className="bg-[#1b1a1a] text-white px-5 py-2 flex" onClick={handleMyDocumentsClick} >
+        <IoDocumentOutline size={24}/>
           My Documents
         </button>
-        <button className="bg-[#1b1a1a] text-white px-5 py-2" onClick={handleUploadDocumentClick} >
+        <button className="bg-[#1b1a1a] text-white px-5 py-2 flex" onClick={handleUploadDocumentClick} >
+        <IoCloudUploadOutline size={24} />
           Upload  Documents
         </button>
         
