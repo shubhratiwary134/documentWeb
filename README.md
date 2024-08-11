@@ -17,10 +17,10 @@ Features
 
 Tech Stack
 
- Frontend: React, TypeScript, Vite, Material UI, React Drop-Zone
- Backend: Firebase
- Document Storage: Firebase Storage
- Metadata Storage: Firestore
+ Frontend: React, TypeScript, Vite, Material UI, React Drop-Zone,
+ Backend: Firebase,
+ Document Storage: Firebase Storage,
+ Metadata Storage: Firestore,
  Authentication: Clerk
 
 Getting Started
