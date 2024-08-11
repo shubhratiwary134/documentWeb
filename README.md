@@ -1,50 +1,111 @@
-# React + TypeScript + Vite
+Document Management System
+Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a document management system that allows users to upload, describe, and manage documents with flexible visibility options. Users can choose to make documents public or private. The system includes features such as search functionality, pagination, and lazy loading to handle data efficiently. It is built with TypeScript and utilizes Firebase for document storage and metadata management. The user interface is styled with Material UI and supports drag-and-drop file uploads using React Drop-Zone.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  Authentication: User authentication is managed using Clerk.
+    Document Upload: Users can upload documents via drag-and-drop functionality provided by React Drop-Zone.
+    Description & Visibility: Users can add descriptions to their documents and set visibility as public or private.
+        Public Documents: Visible to all users.
+        Private Documents: Visible only to the specific user who uploaded them.
+    Search Bar: Allows users to search for documents by keywords.
+    Pagination: Efficiently handles large sets of documents with pagination.
+    Lazy Loading: Loads data on demand to improve performance and user experience.
+    Responsive Design: Styled with Material UI for a modern and responsive interface.
 
-## Expanding the ESLint configuration
+Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ Frontend: React, TypeScript, Vite, Material UI, React Drop-Zone,
+ Backend: Firebase,
+ Document Storage: Firebase Storage,
+ Metadata Storage: Firestore,
+ Authentication: Clerk
 
-- Configure the top-level `parserOptions` property like this:
+Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Prerequisites:
+  Node.js
+  npm (or yarn)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    Clone the repository:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    bash
+
+    git clone <repository-url>
+    cd <repository-folder>
+
+Install dependencies:
+
+bash
+
+     npm install
+   # or
+     yarn install
+
+
+
+Set up Firebase:
+
+    Create a Firebase project and configure Firestore and Firebase Storage.
+    Obtain your Firebase configuration details (apiKey, authDomain, projectId, etc.).
+
+Configure Firebase:
+
+  Create a .env file in the root directory and add your Firebase configuration:
+
+    .env
+
+    VITE_FIREBASE_API_KEY=<your-api-key>
+    VITE_FIREBASE_AUTH_DOMAIN=<your-auth-domain>
+    VITE_FIREBASE_PROJECT_ID=<your-project-id>
+    VITE_FIREBASE_STORAGE_BUCKET=<your-storage-bucket>
+    VITE_FIREBASE_MESSAGING_SENDER_ID=<your-messaging-sender-id>
+    VITE_FIREBASE_APP_ID=<your-app-id>
+
+Start the development server:
+
+bash
+
+    npm run dev
+    # or
+    yarn dev
+
+    Navigate to http://localhost:3000 to view the application.
+
+Usage
+
+    Authentication: Sign in or sign up using Clerk. Follow the authentication flow to gain access to the application.
+
+    Upload Documents: Use the drag-and-drop area provided by React Drop-Zone to upload documents. Add a description and set the visibility (public or private). The document is stored in Firebase Storage, and its metadata is stored in Firestore.
+
+    Search Documents: Utilize the search bar to find specific documents based on keywords.
+
+    View Documents: Navigate through paginated results to view documents. Public documents are accessible to everyone, while private documents are only visible to the respective user.
+
+Contributing
+
+    Fork the repository.
+
+    Create a feature branch:
+
+    bash
+
+    git checkout -b feature/your-feature
+
+Commit your changes:
+
+bash
+
+    git commit -m 'Add some feature'
+
+Push to the branch:
+
+bash
+
+    git push origin feature/your-feature
+
+
