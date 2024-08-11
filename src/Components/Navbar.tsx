@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <Box
       sx={{
-        m: 2,
+        
         p: 2,
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' }, // Stack items vertically on small screens
