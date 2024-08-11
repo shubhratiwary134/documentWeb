@@ -1,19 +1,22 @@
+import React, { Suspense } from "react";
+import Navbar from "../Components/Navbar";
+import SetUser from "../Storage/useStore";
+import CircularProgress from '@mui/material/CircularProgress';
 
+const DocumentList = React.lazy(() => import("../Components/DocumentList"));
 
-import Navbar from "../Components/Navbar"
-import DocumentList from "../Components/DocumentList"
-import SetUser from "../Storage/useStore"
 const HomePage = () => {
   return (
     <div>
-      <SetUser></SetUser>
+      <SetUser />
       <div>
-      <Navbar></Navbar>
+        <Navbar />
       </div>
-       
-        <DocumentList></DocumentList>
+      <Suspense fallback={<div style={{ textAlign: 'center', marginTop: '20px' }}><CircularProgress /></div>}>
+        <DocumentList />
+      </Suspense>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

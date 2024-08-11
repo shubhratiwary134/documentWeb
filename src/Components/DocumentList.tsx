@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs, limit, startAfter, endBefore, orderBy ,limitToLast} from 'firebase/firestore';
 import { db } from '../firebase/Firebase';
@@ -124,7 +122,7 @@ const DocumentList: React.FC = () => {
               />
               <ListItemText
               primary={doc.description}
-              sx={{ color: 'text.primary' }}
+              sx={{ color: 'text.primary',marginTop:10 }}
               />
               </div>
             
