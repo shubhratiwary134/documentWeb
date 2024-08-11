@@ -1,5 +1,5 @@
 
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut} from "@clerk/clerk-react";
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -8,13 +8,14 @@ import MyDocuments from "./Pages/MyDocuments";
 
 import HomePage from "./Pages/HomePage";
 import UploadDocuments from "./Pages/UploadDocuments";
+import LandingPage from "./Pages/LandingPage";
 const App = () => {
  
   return (
     <Router>
        <header>
       <SignedOut>
-        <SignInButton />
+       <LandingPage></LandingPage>
       </SignedOut>
       
       <SignedIn >

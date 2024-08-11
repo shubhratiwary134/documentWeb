@@ -1,0 +1,10 @@
+.landing-container {
+    
+    background-image: url('../assets/undefined - Imgur.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensure the background image covers the entire screen */
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+}
