@@ -63,7 +63,7 @@ const MyDocuments: React.FC = () => {
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <List>
         {documents.map((doc) => (
-          <ListItem key={doc.id} sx={{ mb: 2, p: 2, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }}>
+          <ListItem key={doc.id} sx={{ mb: 2, p: 2, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',padding:'50px' }}>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, width: '100%' }}>
               <Box sx={{ flex: 1, pr: { xs: 0, sm: 2 }, mb: { xs: 2, sm: 0 } }}>
                 <ListItemText
