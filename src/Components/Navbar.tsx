@@ -47,10 +47,10 @@ const Navbar = () => {
         sx={{
           display: 'flex',
           gap: 2,
-          flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
-          justifyContent: { xs: 'center', sm: 'flex-end' }, // Center buttons on small screens
+          flexWrap: 'wrap',
+          justifyContent: { xs: 'center', sm: 'flex-end' },
           width: '100%',
-          mt: { xs: 2, sm: 0 }, // Margin-top on small screens
+          mt: { xs: 2, sm: 0 }, 
         }}
       >
         <Button
