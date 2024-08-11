@@ -35,16 +35,16 @@ Installation
 
     bash
 
-git clone <repository-url>
-cd <repository-folder>
+    git clone <repository-url>
+    cd <repository-folder>
 
 Install dependencies:
 
 bash
 
-npm install
-# or
-yarn install
+     npm install
+   # or
+     yarn install
 
 
 
@@ -55,9 +55,9 @@ Set up Firebase:
 
 Configure Firebase:
 
-    Create a .env file in the root directory and add your Firebase configuration:
+  Create a .env file in the root directory and add your Firebase configuration:
 
-    env
+    .env
 
     VITE_FIREBASE_API_KEY=<your-api-key>
     VITE_FIREBASE_AUTH_DOMAIN=<your-auth-domain>
@@ -94,18 +94,18 @@ Contributing
 
     bash
 
-git checkout -b feature/your-feature
+    git checkout -b feature/your-feature
 
 Commit your changes:
 
 bash
 
-git commit -m 'Add some feature'
+    git commit -m 'Add some feature'
 
 Push to the branch:
 
 bash
 
-git push origin feature/your-feature
+    git push origin feature/your-feature
 
-Open a pull request.
+
