@@ -31,9 +31,9 @@ Prerequisites:
 
 Installation
 
-  Clone the repository:
+    Clone the repository:
 
-  bash
+    bash
 
 git clone <repository-url>
 cd <repository-folder>
@@ -45,6 +45,8 @@ bash
 npm install
 # or
 yarn install
+
+
 
 Set up Firebase:
 
