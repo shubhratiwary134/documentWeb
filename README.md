@@ -22,13 +22,15 @@ This project is a document management system that allows users to upload, descri
 
     👀 Document Visibility: Set documents to public (visible to all) or private (visible only to the owner).
 
-Tech Stack
+🛠️ Tech Stack
 
- Frontend: React, TypeScript, Vite, Material UI, React Drop-Zone,
- Backend: Firebase,
- Document Storage: Firebase Storage,
- Metadata Storage: Firestore,
- Authentication: Clerk
+    Frontend: React, TypeScript, Vite, Material UI, React Drop-Zone
+
+    Backend: Firebase (Firestore & Firebase Storage)
+
+    Authentication: Clerk
+
+    Language: TypeScript
 
 Getting Started
 
