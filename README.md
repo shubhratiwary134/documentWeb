@@ -6,17 +6,21 @@ This project is a document management system that allows users to upload, descri
 ![Screenshot](./src/assets/SS1.png)
 
 
-Features
+⭐ Key Features
 
-  Authentication: User authentication is managed using Clerk.
-    Document Upload: Users can upload documents via drag-and-drop functionality provided by React Drop-Zone.
-    Description & Visibility: Users can add descriptions to their documents and set visibility as public or private.
-        Public Documents: Visible to all users.
-        Private Documents: Visible only to the specific user who uploaded them.
-    Search Bar: Allows users to search for documents by keywords.
-    Pagination: Efficiently handles large sets of documents with pagination.
-    Lazy Loading: Loads data on demand to improve performance and user experience.
-    Responsive Design: Styled with Material UI for a modern and responsive interface.
+    🔐 Secure User Authentication: Managed by Clerk for robust and easy-to-use authentication.
+
+    📁 File Uploads: Simple drag-and-drop file uploads using React Drop-Zone.
+
+    ☁️ Cloud Storage: Securely stores all documents in Firebase Storage.
+
+    📝 Metadata Management: Document details (like descriptions and visibility) are saved in Firestore.
+
+    🔍 Search Functionality: Easily search for documents by name or description.
+
+    🚀 Efficient Data Handling: Implements pagination and lazy loading for optimal performance.
+
+    👀 Document Visibility: Set documents to public (visible to all) or private (visible only to the owner).
 
 Tech Stack
 
